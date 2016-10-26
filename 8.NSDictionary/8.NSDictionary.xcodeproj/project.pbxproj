@@ -63,8 +63,8 @@
 			children = (
 				F86852CD1DBFD07C00591853 /* AppDelegate.h */,
 				F86852CE1DBFD07C00591853 /* AppDelegate.m */,
-				F86852D01DBFD07C00591853 /* ViewController.h */,
 				F86852E11DBFD09800591853 /* Classes */,
+				F86852D01DBFD07C00591853 /* ViewController.h */,
 				F86852D11DBFD07C00591853 /* ViewController.m */,
 				F86852D31DBFD07C00591853 /* Main.storyboard */,
 				F86852D61DBFD07C00591853 /* Assets.xcassets */,
@@ -323,6 +323,7 @@
 				F86852E01DBFD07C00591853 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

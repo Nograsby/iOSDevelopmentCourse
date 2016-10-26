@@ -18,50 +18,56 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    // Student
-    for (NSInteger i = 0; i < 10; i++) {
-    
-  /*      Student *student = [Student alloc] initWithFirstName:<#(NSString *)#>
-        lastName:<#(NSString *)#>
-        greeting:<#(NSString *)#>*/
+    // Beginner Level
+    NSMutableDictionary *students = [NSMutableDictionary dictionary];
+    for (NSInteger i = 0; i < 15; i++) {
+        NSString *firstName = [[[self generateRandomStringFromLenght:4 toLenght:6] localizedLowercaseString] capitalizedString];
+        NSString *lastName = [[[self generateRandomStringFromLenght:8 toLenght:13] localizedLowercaseString] capitalizedString];
+        NSString *greeting = [[[self generateRandomStringFromLenght:35 toLenght:40] localizedLowercaseString] capitalizedString];
+        Student *student = [[Student alloc] initWithFirstName:firstName
+                                                     lastName:lastName
+                                                     greeting:greeting];
+        NSString *fullName = [NSString stringWithFormat:@"%@ %@", student.lastName, student.firstName];
+        [students setObject:student forKey:fullName];
     }
-    NSString *firstName = [self randomizeString:@"test"];
+    NSLog(@"---   Beginner   ---");
+    NSLog(@"%@", students);
     
-    NSLog(@"%@", firstName);
+    // Student Level
+    NSLog(@"\n\n---   Student   ---\n");
+    for (NSString *studentKey in students.allKeys) {
+        Student *student = students[studentKey];
+        NSLog(@"%@", student);
+    }
     
+    // Master Level
+    NSLog(@"\n\n---   Master   ---\n");
+    NSArray *sortedKeys = [students.allKeys sortedArrayUsingComparator:^NSComparisonResult(NSString *key1, NSString *key2) {
+        return [key1 compare:key2];
+    }];
+    for (NSString *studentKey in sortedKeys) {
+        Student *student = students[studentKey];
+        NSLog(@"%@", student);
+    }
     return YES;
 }
 
-- (NSString *)randomizeString:(NSString *)str {
-    
-    NSMutableString *input = [str mutableCopy];
-    NSMutableString *output = [NSMutableString string];
-    
-    NSUInteger len = input.length;
-    
-    for (NSUInteger i = 0; i < len; i++) {
-        NSInteger index = arc4random_uniform((unsigned int)input.length);
-        [output appendFormat:@"%C", [input characterAtIndex:index]];
-        [input replaceCharactersInRange:NSMakeRange(index, 1) withString:@""];
+- (NSString *)generateRandomStringFromLenght:(NSInteger)fromLenght toLenght:(NSInteger)toLenght {
+    NSString *letters = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    NSInteger stringLenght = 0;
+    if (toLenght >= fromLenght) {
+        stringLenght = arc4random_uniform(toLenght - fromLenght) + fromLenght;
+    } else {
+        return @"";
     }
+    NSMutableString *randomString = [NSMutableString stringWithCapacity:stringLenght];
     
-    return output;
+    for (NSInteger i = 0; i < stringLenght; i++) {
+        [randomString appendFormat: @"%C", [letters characterAtIndex: arc4random_uniform([letters length])]];
+    }
+    return randomString;
 }
 
-+(NSString *) generateRandomString
-    {
-        NSString *letters = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-        int len = 8;
-        NSMutableString *randomString = [NSMutableString stringWithCapacity: len];
-        
-        for (int i=0; i<len; i++) {
-            [randomString appendFormat: @"%C", [letters characterAtIndex: arc4random_uniform([letters length])]];
-        }
-        
-        return randomString;
-        
-    }
-    
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
