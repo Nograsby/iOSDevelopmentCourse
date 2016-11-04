@@ -85,9 +85,7 @@
         NSLog(@"%@ %@",student.name,student.lastname);
     }
     
-    
     // Level Master
-    
     void (^patientBlock) (Patient *) = ^ (Patient *illPatient) {
         if (illPatient.temperature < 40 && illPatient.temperature >= 38) {
             [illPatient takePill];
@@ -114,11 +112,6 @@
             [patient patientFeelBedWithInfo:patientBlock];
             }
     }
-    
-    for (int i = 0; i < 30; i++) {
-        [[self.patients objectAtIndex:arc4random() % self.patients.count] performSelector:@selector(patientFeelBedWithInfo:) withObject:patientBlock afterDelay:arc4random() % 100 + 7];
-    }
-    
     return YES;
 }
 
@@ -139,15 +132,6 @@
     return capitalizedName;
 }
 
-+ (NSString *)createRandomName
-{
-    NSTimeInterval timeStamp = [ [ NSDate date ] timeIntervalSince1970 ];
-    NSString *randomName = [ NSString stringWithFormat:@"M%f", timeStamp];
-    randomName = [ randomName stringByReplacingOccurrencesOfString:@"." withString:@"" ];
-    return randomName;
-}
-
-
 - (void)testMethodWithBlock: (void(^)(void))test {
     test ();
 }
@@ -155,7 +139,6 @@
 - (void)testMethodWithBlock1: (void(^)(NSString *))test {
     test (@"TestMethodWithBlock1");
 }
-
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

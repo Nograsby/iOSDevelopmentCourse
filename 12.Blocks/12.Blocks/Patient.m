@@ -8,11 +8,9 @@
 
 #import "Patient.h"
 
-
 @implementation Patient
 
-- (instancetype)initWithBlock:(void(^)(Patient *))patientBlock
-{
+- (instancetype)initWithBlock:(void(^)(Patient *))patientBlock {
     self = [super init];
     if (self) {
         _temperature = (arc4random() % 40 + 366.f)/10.f;
@@ -28,11 +26,14 @@
     return IAmOk;
 }
 
-- (void)patientFeelBedWithInfo: (void (^)(Patient *))parameters {
+- (void)patientFeelBedWithInfo:(void (^)(Patient *))parameters {
     _temperature = (arc4random() % 40 + 366.f)/10.f;
     
     __weak Patient *weakSelf = self;
     parameters (weakSelf);
+    NSInteger feelBadInterval = arc4random() % 10 + 5;
+    [self performSelector:@selector(patientFeelBedWithInfo:) withObject:parameters afterDelay:feelBadInterval];
+    NSLog(@"Time for patient %@ is %d", weakSelf.name, feelBadInterval);
 }
 
 - (void)takePill {
