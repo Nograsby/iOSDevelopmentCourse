@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "AVStudent.h"
 
 @interface AppDelegate ()
 
@@ -17,7 +18,19 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
-    CFTimeInterval asfd = CACurrentMediaTime();
+    NSInteger setNumber = arc4random() % 10000000;
+    NSLog(@"Set number is %d.", setNumber);
+    
+    for (NSInteger i = 0; i < 5; i++) {
+        AVStudent *student = [[AVStudent alloc] init];
+        [student guessNumber:setNumber inRangeFrom:0 to:9999999];
+    }
+    
+    for (NSInteger i = 0; i < 5; i++) {
+        AVStudent *student = [[AVStudent alloc] init];
+        void (^logBlock)(void);
+        [student guessNumber:setNumber inRangeFrom:0 to:9999999 withResultsBlock:logBlock];
+    }
 
     return YES;
 }

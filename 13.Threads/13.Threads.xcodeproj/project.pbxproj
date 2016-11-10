@@ -123,6 +123,7 @@
 				TargetAttributes = {
 					F85A3D7F1DCF3C0100649FEA = {
 						CreatedOnToolsVersion = 8.1;
+						DevelopmentTeam = PN5652MYT3;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -286,7 +287,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = PN5652MYT3;
 				INFOPLIST_FILE = 13.Threads/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.nograsby.-3-Threads";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -297,7 +300,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = PN5652MYT3;
 				INFOPLIST_FILE = 13.Threads/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.nograsby.-3-Threads";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -323,6 +328,7 @@
 				F85A3D991DCF3C0200649FEA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
