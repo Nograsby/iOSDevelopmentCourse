@@ -1,14 +1,14 @@
 //
-//  AVStudent.m
+//  VABestStudent.m
 //  13.Threads
 //
-//  Created by Vladimir Ananko on 11/6/16.
+//  Created by Vladimir Ananko on 11/22/16.
 //  Copyright © 2016 Vladimir Ananko. All rights reserved.
 //
 
-#import "AVStudent.h"
+#import "VABestStudent.h"
 
-@implementation AVStudent
+@implementation VABestStudent
 
 + (dispatch_queue_t)sharedQueue {
     static dispatch_queue_t studentQueue = nil;
@@ -38,7 +38,7 @@
                     NSDate *finishDate = [NSDate date];
                     NSTimeInterval finishInterval = finishDate.timeIntervalSinceReferenceDate;
                     NSLog(@"I am - %@. I have finded number in %f seconds! I try %d times.",
-                        self.name, (finishInterval - startInterval), attemptsQuantity);
+                          self.name, (finishInterval - startInterval), attemptsQuantity);
                     setNumberFinded = YES;
                 }
             }
@@ -100,7 +100,7 @@
             NSLog(@"Result from block. I am - %@. I have finded number in %f seconds! I try %d times.",
                   self.name, (finishInterval - startInterval), attemptsQuantity);
         };
-        dispatch_queue_t queue = [AVStudent sharedQueue];
+        dispatch_queue_t queue = [VABestStudent sharedQueue];
         dispatch_async(queue, ^{
             while (!setNumberFinded) {
                 attemptsQuantity++;

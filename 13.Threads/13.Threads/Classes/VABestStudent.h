@@ -1,8 +1,8 @@
 //
-//  AVStudent.h
+//  VABestStudent.h
 //  13.Threads
 //
-//  Created by Vladimir Ananko on 11/6/16.
+//  Created by Vladimir Ananko on 11/22/16.
 //  Copyright © 2016 Vladimir Ananko. All rights reserved.
 //
 
@@ -10,7 +10,7 @@
 
 typedef void (^AVResultsBlock)(void);
 
-@interface AVStudent : NSObject
+@interface VABestStudent : NSObject
 
 @property (strong, nonatomic) NSString *name;
 
@@ -29,5 +29,5 @@ typedef void (^AVResultsBlock)(void);
                 inRangeFrom:(NSInteger)fromRange
                          to:(NSInteger)toRange
            withResultsBlock:(AVResultsBlock)resultsBlock;
-
+           
 @end

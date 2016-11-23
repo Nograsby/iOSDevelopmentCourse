@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F8168A351DE4B0E000236798 /* VABestStudent.m in Sources */ = {isa = PBXBuildFile; fileRef = F8168A341DE4B0E000236798 /* VABestStudent.m */; };
 		F85A3D851DCF3C0200649FEA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F85A3D841DCF3C0200649FEA /* main.m */; };
 		F85A3D881DCF3C0200649FEA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F85A3D871DCF3C0200649FEA /* AppDelegate.m */; };
 		F85A3D8B1DCF3C0200649FEA /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F85A3D8A1DCF3C0200649FEA /* ViewController.m */; };
@@ -17,6 +18,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F8168A331DE4B0E000236798 /* VABestStudent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VABestStudent.h; path = Classes/VABestStudent.h; sourceTree = "<group>"; };
+		F8168A341DE4B0E000236798 /* VABestStudent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VABestStudent.m; path = Classes/VABestStudent.m; sourceTree = "<group>"; };
 		F85A3D801DCF3C0100649FEA /* 13.Threads.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = 13.Threads.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F85A3D841DCF3C0200649FEA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		F85A3D861DCF3C0200649FEA /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -88,6 +91,8 @@
 			children = (
 				F85A3D9B1DCF3CB000649FEA /* AVStudent.h */,
 				F85A3D9C1DCF3CB000649FEA /* AVStudent.m */,
+				F8168A331DE4B0E000236798 /* VABestStudent.h */,
+				F8168A341DE4B0E000236798 /* VABestStudent.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -167,6 +172,7 @@
 				F85A3D9D1DCF3CB000649FEA /* AVStudent.m in Sources */,
 				F85A3D8B1DCF3C0200649FEA /* ViewController.m in Sources */,
 				F85A3D881DCF3C0200649FEA /* AppDelegate.m in Sources */,
+				F8168A351DE4B0E000236798 /* VABestStudent.m in Sources */,
 				F85A3D851DCF3C0200649FEA /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
