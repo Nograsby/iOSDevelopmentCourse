@@ -38,9 +38,11 @@
 
 #import "AppDelegate.h"
 #import "AVStudent.h"
+#import "VABestStudent.h"
 
-static NSInteger const MinSetNumber = 0;
-static NSInteger const MaxSetNumber = 10000000;
+static NSInteger const VAMinSetNumber = 0;
+static NSInteger const VAMaxSetNumber = 1000000;
+typedef void (^VAResultsBlock)(NSString *, double, NSInteger);
 
 @interface AppDelegate ()
 
@@ -50,33 +52,70 @@ static NSInteger const MaxSetNumber = 10000000;
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    NSInteger setNumber = (arc4random() % (MaxSetNumber - MinSetNumber)) + MinSetNumber;
+    NSInteger setNumber = (arc4random() % (VAMaxSetNumber - VAMinSetNumber)) + VAMinSetNumber;
     NSLog(@"Set number is %d.", setNumber);
 
-//    // Beginner
-//    for (NSInteger i = 0; i < 5; i++) {
-//        AVStudent *student = [[AVStudent alloc] init];
-//        student.name = [NSString stringWithFormat:@"Student %ld", (long)i];
-//        [student guessNumber:setNumber inRangeFrom:MinSetNumber to:MaxSetNumber];
-//    }
-//    
-//    //Student
-//    for (NSInteger i = 0; i < 5; i++) {
-//        AVStudent *student = [[AVStudent alloc] init];
-//        student.name = [NSString stringWithFormat:@"Student %ld", (long)i + 5];
-//        void (^logBlock)(void);
-//        [student guessNumber:setNumber inRangeFrom:MinSetNumber to:MaxSetNumber withResultsBlock:logBlock];
-//    }
-//    
-//    // Master
-//    for (NSInteger i = 0; i < 5; i++) {
-//        AVStudent *student = [[AVStudent alloc] init];
-//        student.name = [NSString stringWithFormat:@"Student %ld", (long)i + 10];
-//        void (^logBlock)(void);
-//        [student guessOneQueueNumber:setNumber inRangeFrom:MinSetNumber to:MaxSetNumber withResultsBlock:logBlock];
-//    }
+    VAResultsBlock logBlock = ^(NSString *name, double time, NSInteger times) {
+        NSLog(@"I am %@. I have finished in %f. I try %ld times.", name, time, (long)times);
+    };
+    
+    // Beginner
+    for (NSInteger i = 0; i < 5; i++) {
+        AVStudent *student = [[AVStudent alloc] init];
+        student.name = [NSString stringWithFormat:@"Student %ld", (long)i];
+        [student guessNumber:setNumber
+                 inRangeFrom:VAMinSetNumber
+                          to:VAMaxSetNumber];
+    }
 
-NSOperation
+    // Student
+    for (NSInteger i = 0; i < 5; i++) {
+        AVStudent *student = [[AVStudent alloc] init];
+        student.name = [NSString stringWithFormat:@"Student %ld", (long)i + 5];
+        [student guessNumber:setNumber
+                 inRangeFrom:VAMinSetNumber
+                          to:VAMaxSetNumber
+            withResultsBlock:logBlock];
+    }
+    
+    // Master
+    for (NSInteger i = 0; i < 5; i++) {
+        AVStudent *student = [[AVStudent alloc] init];
+        student.name = [NSString stringWithFormat:@"Student %ld", (long)i + 10];
+        [student guessOneQueueNumber:setNumber
+                         inRangeFrom:VAMinSetNumber
+                                  to:VAMaxSetNumber
+                    withResultsBlock:logBlock];
+    }
+
+    // Supermen - Beginner
+    for (NSInteger i = 0; i < 5; i++) {
+        VABestStudent *bestStudent = [[VABestStudent alloc] init];
+        bestStudent.name = [NSString stringWithFormat:@"Best student %ld", (long)i];
+        [bestStudent guessNumber:setNumber
+                     inRangeFrom:VAMinSetNumber
+                              to:VAMaxSetNumber];
+    }
+
+    // Supermen - Student
+    for (NSInteger i = 0; i < 5; i++) {
+        VABestStudent *bestStudent = [[VABestStudent alloc] init];
+        bestStudent.name = [NSString stringWithFormat:@"Best student %ld", (long)i + 5];
+        [bestStudent guessNumber:setNumber
+                     inRangeFrom:VAMinSetNumber
+                              to:VAMaxSetNumber
+                withResultsBlock:logBlock];
+    }
+    
+    // Supermen - Master
+    for (NSInteger i = 0; i < 5; i++) {
+        VABestStudent *bestStudent = [[VABestStudent alloc] init];
+        bestStudent.name = [NSString stringWithFormat:@"Best student %ld", (long)i + 10];
+        [bestStudent guessOneQueueNumber:setNumber
+                             inRangeFrom:VAMinSetNumber
+                                      to:VAMaxSetNumber
+                        withResultsBlock:logBlock];
+    }
     
     return YES;
 }

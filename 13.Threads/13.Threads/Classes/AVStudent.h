@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-typedef void (^AVResultsBlock)(void);
+typedef void (^VAResultsBlock)(NSString *, double, NSInteger);
 
 @interface AVStudent : NSObject
 
@@ -23,11 +23,11 @@ typedef void (^AVResultsBlock)(void);
 - (void)guessNumber:(NSInteger)setNumber
         inRangeFrom:(NSInteger)fromRange
                  to:(NSInteger)toRange
-   withResultsBlock:(AVResultsBlock)resultsBlock;
+   withResultsBlock:(VAResultsBlock)resultsBlock;
 
-- (void)guessOneQueueNumber:(NSInteger)setNumber1
+- (void)guessOneQueueNumber:(NSInteger)setNumber
                 inRangeFrom:(NSInteger)fromRange
                          to:(NSInteger)toRange
-           withResultsBlock:(AVResultsBlock)resultsBlock;
+           withResultsBlock:(VAResultsBlock)resultsBlock;
 
 @end

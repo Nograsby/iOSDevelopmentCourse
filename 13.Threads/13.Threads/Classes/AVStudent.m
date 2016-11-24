@@ -19,103 +19,94 @@
     return studentQueue;
 }
 
-- (void)guessNumber:(NSInteger)setNumber inRangeFrom:(NSInteger)fromRange to:(NSInteger)toRange {
+- (void)guessNumber:(NSInteger)setNumber
+        inRangeFrom:(NSInteger)fromRange
+                 to:(NSInteger)toRange {
     if (toRange <= fromRange) {
         NSLog(@"Please check range");
         return;
     }
-    else {
-        __block BOOL setNumberFinded = NO;
-        __block NSInteger attemptsQuantity = 0;
+    dispatch_queue_t queue = dispatch_queue_create("studentQueue",  DISPATCH_QUEUE_PRIORITY_DEFAULT);
+    dispatch_async(queue, ^{
+        NSInteger attemptsQuantity = 0;
+        NSInteger generatedNumber = 0;
+        
         NSDate *startDate = [NSDate date];
         NSTimeInterval startInterval = startDate.timeIntervalSinceReferenceDate;
-        dispatch_queue_t queue = dispatch_queue_create("studentQueue",  DISPATCH_QUEUE_PRIORITY_DEFAULT);
-        dispatch_async(queue, ^{
-            while (!setNumberFinded) {
-                attemptsQuantity++;
-                NSInteger generatedNumber = (arc4random() % (toRange - fromRange)) + fromRange;
-                if (generatedNumber == setNumber) {
-                    NSDate *finishDate = [NSDate date];
-                    NSTimeInterval finishInterval = finishDate.timeIntervalSinceReferenceDate;
-                    NSLog(@"I am - %@. I have finded number in %f seconds! I try %d times.",
-                        self.name, (finishInterval - startInterval), attemptsQuantity);
-                    setNumberFinded = YES;
-                }
-            }
-        });
-    }
+        
+        while (generatedNumber != setNumber) {
+            attemptsQuantity++;
+            generatedNumber = (arc4random() % (toRange - fromRange)) + fromRange;
+        }
+        
+        NSDate *finishDate = [NSDate date];
+        NSTimeInterval finishInterval = finishDate.timeIntervalSinceReferenceDate;
+        
+        NSLog(@"I am %@. I have finished in %f. I try %ld times.", self.name, (finishInterval - startInterval), (long)attemptsQuantity);
+    });
 }
 
 - (void)guessNumber:(NSInteger)setNumber
         inRangeFrom:(NSInteger)fromRange
                  to:(NSInteger)toRange
-   withResultsBlock:(AVResultsBlock)resultsBlock {
+   withResultsBlock:(VAResultsBlock)resultsBlock {
     if (toRange <= fromRange) {
         NSLog(@"Please check range");
         return;
     }
-    else {
-        __block BOOL setNumberFinded = NO;
-        __block NSInteger attemptsQuantity = 0;
+    
+    dispatch_queue_t queue = dispatch_queue_create("studentQueue",  DISPATCH_QUEUE_PRIORITY_DEFAULT);
+    
+    dispatch_async(queue, ^{
+        NSInteger attemptsQuantity = 0;
+        NSInteger generatedNumber = 0;
+        
         NSDate *startDate = [NSDate date];
         NSTimeInterval startInterval = startDate.timeIntervalSinceReferenceDate;
-        __block NSTimeInterval finishInterval;
-        resultsBlock = ^ {
-            NSLog(@"Result from block. I am - %@. I have finded number in %f seconds! I try %d times.",
-                  self.name, (finishInterval - startInterval), attemptsQuantity);
-        };
-        dispatch_queue_t queue = dispatch_queue_create("studentQueue",  DISPATCH_QUEUE_PRIORITY_DEFAULT);
-        dispatch_async(queue, ^{
-            while (!setNumberFinded) {
-                attemptsQuantity++;
-                NSInteger generatedNumber = (arc4random() % (toRange - fromRange)) + fromRange;
-                if (generatedNumber == setNumber) {
-                    NSDate *finishDate = [NSDate date];
-                    finishInterval = finishDate.timeIntervalSinceReferenceDate;
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        resultsBlock ();
-                    });
-                    setNumberFinded = YES;
-                }
-            }
+        
+        while (generatedNumber != setNumber) {
+            attemptsQuantity++;
+            generatedNumber = (arc4random() % (toRange - fromRange)) + fromRange;
+        }
+        NSDate *finishDate = [NSDate date];
+        NSTimeInterval finishInterval = finishDate.timeIntervalSinceReferenceDate;
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            __weak AVStudent *weakSelf = self;
+            resultsBlock (weakSelf.name, (finishInterval - startInterval), attemptsQuantity);
         });
-    }
+    });
 }
 
 - (void)guessOneQueueNumber:(NSInteger)setNumber
                 inRangeFrom:(NSInteger)fromRange
                          to:(NSInteger)toRange
-           withResultsBlock:(AVResultsBlock)resultsBlock {
+           withResultsBlock:(VAResultsBlock)resultsBlock {
     if (toRange <= fromRange) {
         NSLog(@"Please check range");
         return;
     }
-    else {
-        __block BOOL setNumberFinded = NO;
-        __block NSInteger attemptsQuantity = 0;
+    
+    dispatch_queue_t queue = [AVStudent sharedQueue];
+    
+    dispatch_async(queue, ^{
+        NSInteger attemptsQuantity = 0;
+        NSInteger generatedNumber = 0;
+        
         NSDate *startDate = [NSDate date];
         NSTimeInterval startInterval = startDate.timeIntervalSinceReferenceDate;
-        __block NSTimeInterval finishInterval;
-        resultsBlock = ^ {
-            NSLog(@"Result from block. I am - %@. I have finded number in %f seconds! I try %d times.",
-                  self.name, (finishInterval - startInterval), attemptsQuantity);
-        };
-        dispatch_queue_t queue = [AVStudent sharedQueue];
-        dispatch_async(queue, ^{
-            while (!setNumberFinded) {
-                attemptsQuantity++;
-                NSInteger generatedNumber = (arc4random() % (toRange - fromRange)) + fromRange;
-                if (generatedNumber == setNumber) {
-                    NSDate *finishDate = [NSDate date];
-                    finishInterval = finishDate.timeIntervalSinceReferenceDate;
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        resultsBlock ();
-                    });
-                    setNumberFinded = YES;
-                }
-            }
+        
+        while (generatedNumber != setNumber) {
+            attemptsQuantity++;
+            generatedNumber = (arc4random() % (toRange - fromRange)) + fromRange;
+        }
+        NSDate *finishDate = [NSDate date];
+        NSTimeInterval finishInterval = finishDate.timeIntervalSinceReferenceDate;
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            __weak AVStudent *weakSelf = self;
+            resultsBlock (weakSelf.name, (finishInterval - startInterval), attemptsQuantity);
         });
-    }
-}
+    });}
 
 @end
