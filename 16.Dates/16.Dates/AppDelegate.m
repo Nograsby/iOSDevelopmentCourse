@@ -103,11 +103,23 @@
     VAStudent *youngestStudent = studentsArray.firstObject;
     NSLog(@"The oldest student: %@", oldestStudent);
     NSLog(@"The youngest student: %@", youngestStudent);
-    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
-    NSDateComponents *yearComponent = [calendar components:NSCalendarUnitYear fromDate:oldestStudent.dateOfBirth toDate:youngestStudent.dateOfBirth options:0];
-    NSDateComponents *monthComponent = [calendar components:NSCalendarUnitMonth fromDate:oldestStudent.dateOfBirth toDate:youngestStudent.dateOfBirth options:0];
-    NSDateComponents *weekComponent = [calendar components:NSCalendarUnitWeekOfYear fromDate:oldestStudent.dateOfBirth toDate:youngestStudent.dateOfBirth options:0];
-    NSDateComponents *dayComponent = [calendar components:NSCalendarUnitDay fromDate:oldestStudent.dateOfBirth toDate:youngestStudent.dateOfBirth options:0];
+    NSCalendar *gregorianCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+    NSDateComponents *yearComponent = [gregorianCalendar components:NSCalendarUnitYear
+                                                           fromDate:oldestStudent.dateOfBirth
+                                                             toDate:youngestStudent.dateOfBirth
+                                                            options:0];
+    NSDateComponents *monthComponent = [gregorianCalendar components:NSCalendarUnitMonth
+                                                            fromDate:oldestStudent.dateOfBirth
+                                                              toDate:youngestStudent.dateOfBirth
+                                                             options:0];
+    NSDateComponents *weekComponent = [gregorianCalendar components:NSCalendarUnitWeekOfYear
+                                                           fromDate:oldestStudent.dateOfBirth
+                                                             toDate:youngestStudent.dateOfBirth
+                                                            options:0];
+    NSDateComponents *dayComponent = [gregorianCalendar components:NSCalendarUnitDay
+                                                          fromDate:oldestStudent.dateOfBirth
+                                                            toDate:youngestStudent.dateOfBirth
+                                                           options:0];
     NSLog(@"Difference between them:");
     NSLog(@"In years: %ld.", (long)yearComponent.year);
     NSLog(@"In months: %ld.", (long)monthComponent.month);
@@ -116,8 +128,70 @@
     
     // Supermen
     //13. Выведите на экран день недели, для каждого первого дня каждого месяца в текущем году (от начала до конца)
+    NSDate *nowDate = [NSDate date];
+    NSDateComponents *startComponents = [gregorianCalendar components:NSCalendarUnitYear fromDate:nowDate];
+    NSDateComponents *finishComponents = [gregorianCalendar components:(NSCalendarUnitYear) fromDate:nowDate];
+    finishComponents.year = finishComponents.year + 1;
+    for (NSInteger i = 1; i < 13; i++) {
+        startComponents.month = i;
+        NSDate *date = [gregorianCalendar dateFromComponents:startComponents];
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"MMMM - EEEE"];
+        NSString *string = [dateFormatter stringFromDate:date];
+        NSLog(@"%@", string);
+    }
+    
     //14. Выведите дату (число и месяц) для каждого воскресенья в текущем году (от начала до конца)
+    NSDateComponents *startComponents1 = [gregorianCalendar components:NSCalendarUnitYear fromDate:nowDate];
+    NSDateComponents *finishComponents1 = [gregorianCalendar components:NSCalendarUnitYear fromDate:nowDate];
+    finishComponents1.year = finishComponents1.year + 1;
+
+    NSDateComponents *currentComponents1 = startComponents1;
+    
+    NSDate *date1 = [gregorianCalendar dateFromComponents:currentComponents1];
+    
+    while (currentComponents1.year < finishComponents1.year) {
+        date1 = [gregorianCalendar dateFromComponents:currentComponents1];
+        currentComponents1 = [gregorianCalendar components:NSCalendarUnitYear|NSCalendarUnitMonth|NSCalendarUnitDay|NSCalendarUnitWeekday fromDate:date1];
+        if (currentComponents1.weekday == 1) {
+            NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+            [dateFormatter setDateFormat:@"dd MMMM"];
+            NSString *string = [dateFormatter stringFromDate:date1];
+            NSLog(@"%@ is Sunday.", string);
+        }
+        currentComponents1.day = currentComponents1.day + 1;
+    }
+    
     //15. Выведите количество рабочих дней для каждого месяца в текущем году (от начала до конца)
+    NSDateComponents *startComponents2 = [gregorianCalendar components:NSCalendarUnitYear fromDate:nowDate];
+    NSDateComponents *finishComponents2 = [gregorianCalendar components:NSCalendarUnitYear fromDate:nowDate];
+    finishComponents2.year = finishComponents2.year + 1;
+    
+    NSDateComponents *currentComponents2 = startComponents2;
+    
+    NSDate *date2 = [gregorianCalendar dateFromComponents:currentComponents2];
+    NSInteger month = 1;
+    NSInteger workdaysQuantity = 0;
+    
+    while (currentComponents2.year < finishComponents2.year) {
+        date2 = [gregorianCalendar dateFromComponents:currentComponents2];
+        currentComponents2 = [gregorianCalendar components:NSCalendarUnitYear|NSCalendarUnitMonth|NSCalendarUnitDay|NSCalendarUnitWeekday fromDate:date2];
+        
+        if (month != currentComponents2.month) {
+            NSLog(@"Month %d have %d workdays.", month, workdaysQuantity);
+            month = currentComponents2.month;
+            workdaysQuantity = 0;
+        }
+        
+        if (currentComponents2.weekday == 2|currentComponents2.weekday == 3|
+            currentComponents2.weekday == 4|currentComponents2.weekday == 5|
+            currentComponents2.weekday == 6) {
+            
+            workdaysQuantity++;
+        }
+        
+        currentComponents2.day = currentComponents2.day + 1;
+    }
     
     return YES;
 }
