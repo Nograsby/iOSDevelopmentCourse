@@ -78,6 +78,10 @@ typedef NS_ENUM(NSInteger, VAViewTag) {
     return view;
 }
 
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations {
+    return UIInterfaceOrientationMaskAll;
+}
+
 - (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator {
     
     [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
@@ -109,35 +113,40 @@ typedef NS_ENUM(NSInteger, VAViewTag) {
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-    CGPoint point = [touches.anyObject locationInView:self.view];
+    UITouch *touch = [touches anyObject];
+    CGPoint point = [touch locationInView:self.view];
     UIView *view = [self.view hitTest:point withEvent:event];
     if ([self.checkersViewsArray containsObject:view]) {
         self.dragView = view;
+        
+        [self addBorderAndShadowToView:view];
+        
         [UIView animateWithDuration:0.3f
                          animations:^{
                              CGAffineTransform transform = CGAffineTransformMakeScale(1.2f, 1.2f);
                              view.transform = transform;
+
                          }];
-        CGPoint pointInView = [touches.anyObject locationInView:view];
+        CGPoint pointInView = [touch locationInView:view];
         self.touchPoint = pointInView;
         [self.view bringSubviewToFront:view];
     }
 }
 
 - (void)touchesMoved:(NSSet<UITouch *> *)touches withEvent:(nullable UIEvent *)event {
-#warning Check
-    CGPoint point = [touches.anyObject locationInView:self.view];
-    CGPoint offset = CGPointMake(self.touchPoint.x - CGRectGetWidth(self.dragView.bounds) / 2, self.touchPoint.y - CGRectGetHeight(self.dragView.bounds) / 2);
-    self.dragView.center = CGPointMake(point.x - offset.x, point.y - offset.y);
-    
+    UITouch *touch = [touches anyObject];
+    self.dragView.center = [self centerViewWithOffsetAndTouch:touch];
+}
+
+- (CGPoint)centerViewWithOffsetAndTouch:(UITouch *)touch {
+    CGPoint pointOnMainView = [touch locationInView:self.view];
+    CGPoint offsetPoint = CGPointMake(self.touchPoint.x - CGRectGetMidX(self.dragView.bounds),
+                                      self.touchPoint.y - CGRectGetMidY(self.dragView.bounds));
+    CGPoint center = CGPointMake(pointOnMainView.x - offsetPoint.x, pointOnMainView.y - offsetPoint.y);
+    return center;
 }
 
 - (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-    NSLog(@"touchesEnded %@", NSStringFromCGPoint([touches.anyObject locationInView:self.view]));
-
-    CGPoint point = [touches.anyObject locationInView:self.view];
-    CGPoint offset = CGPointMake(self.touchPoint.x - CGRectGetWidth(self.dragView.bounds) / 2, self.touchPoint.y - CGRectGetHeight(self.dragView.bounds) / 2);
-    self.dragView.center = CGPointMake(point.x - offset.x, point.y - offset.y);
     
     NSMutableDictionary *distanceDictionary = [NSMutableDictionary dictionary];
     for (UIView *view in self.fieldViewsArray) {
@@ -157,6 +166,7 @@ typedef NS_ENUM(NSInteger, VAViewTag) {
         for (UIView *view in self.checkersViewsArray) {
             if (CGRectContainsRect(closestFieldView.frame, view.frame)&&(![view isEqual:self.dragView])) {
                 isEmptySquare = NO;
+                break;
             }
         }
         
@@ -172,22 +182,29 @@ typedef NS_ENUM(NSInteger, VAViewTag) {
 }
 
 - (void)touchesCancelled:(NSSet<UITouch *> *)touches withEvent:(nullable UIEvent *)event {
-    CGPoint point = [touches.anyObject locationInView:self.view];
-    UIView *view = [self.view hitTest:point withEvent:event];
-    
-    NSLog(@"touchesCancelled %@", NSStringFromCGPoint([touches.anyObject locationInView:self.view]));
-    
     [self dropView];
 }
 
 - (void)dropView {
-#warning Check
     self.dragView.transform = CGAffineTransformIdentity;
+    [self removeBorderAndShadowFromDragView];
     self.dragView = nil;
 }
 
-- (UIInterfaceOrientationMask)supportedInterfaceOrientations {
-    return UIInterfaceOrientationMaskAll;
+- (void)addBorderAndShadowToView:(UIView *)view {
+    UIBezierPath *shadowPath = [UIBezierPath bezierPathWithRoundedRect:view.bounds cornerRadius:(CGRectGetWidth(view.bounds) / 2)];
+    view.layer.masksToBounds = NO;
+    view.layer.shadowColor = [UIColor blackColor].CGColor;
+    view.layer.shadowOffset = CGSizeMake(0.0f, 2.0f);
+    view.layer.shadowOpacity = 0.5f;
+    view.layer.shadowPath = shadowPath.CGPath;
+    view.layer.borderColor = [UIColor grayColor].CGColor;
+    view.layer.borderWidth = 0.5f;
+}
+
+- (void)removeBorderAndShadowFromDragView {
+    self.dragView.layer.borderWidth = 0.0f;
+    self.dragView.layer.shadowColor = nil;
 }
 
 @end
