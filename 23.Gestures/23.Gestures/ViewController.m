@@ -42,6 +42,7 @@ typedef NS_ENUM(NSInteger, VARotationDirection) {
 
 @property (assign, nonatomic) CGAffineTransform currentTransform;
 @property (assign, nonatomic) CGFloat lastScale;
+@property (assign, nonatomic) CGFloat imageViewRotation;
 
 @property (strong, nonatomic) UIImageView *imageView;
 
@@ -92,23 +93,17 @@ typedef NS_ENUM(NSInteger, VARotationDirection) {
     doubleTapTouchGesture.numberOfTouchesRequired = 2;
     [self.view addGestureRecognizer:doubleTapTouchGesture];
     
+    // Supermen
     UIPinchGestureRecognizer *pinchGesture = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(handlePinch:)];
+    pinchGesture.delegate = self;
     [self.view addGestureRecognizer:pinchGesture];
 
-    
-   //[tapGesture requireGestureRecognizerToFail:doubleTapTouchGesture];
-
-
-//    UITapGestureRecognizer *doubleTapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleDoubleTap:)];
-//    doubleTapGesture.numberOfTapsRequired = 2;
-//    [self.view addGestureRecognizer:doubleTapGesture];
-//    
-
-//    
-
+    UIRotationGestureRecognizer *rotateGesture = [[UIRotationGestureRecognizer alloc] initWithTarget:self action:@selector(handleRotation:)];
+    rotateGesture.delegate = self;
+    [self.view addGestureRecognizer:rotateGesture];
 }
 
-- (void)handleTap:(UIGestureRecognizer *)gesture {
+- (void)handleTap:(UITapGestureRecognizer *)gesture {
     CGPoint touchPoint = [gesture locationInView:self.view];
     [UIView animateWithDuration:2.0f
                           delay:0.0f
@@ -121,80 +116,65 @@ typedef NS_ENUM(NSInteger, VARotationDirection) {
 }
 
 - (void)handleRightSwipe:(UISwipeGestureRecognizer *)gesture {
-    [self.imageView.layer removeAllAnimations];
     self.currentTransform = self.imageView.transform;
+    [self.imageView.layer removeAllAnimations];
     [self rotateSpinningView:self.imageView withRotationDirection:VARotationDirectionClockwise];
 }
 
 - (void)handleLeftSwipe:(UISwipeGestureRecognizer *)gesture {
-    [self.imageView.layer removeAllAnimations];
     self.currentTransform = self.imageView.transform;
+    [self.imageView.layer removeAllAnimations];
     [self rotateSpinningView:self.imageView withRotationDirection:VARotationDirectionCounterclockwise];
 }
 
-- (void)handleDoubleTapTouch:(UIGestureRecognizer *)gesture {
+- (void)handleDoubleTapTouch:(UITapGestureRecognizer *)gesture {
     [self.imageView.layer removeAllAnimations];
 }
-
 
 - (void)handlePinch:(UIPinchGestureRecognizer *)gesture {
     if (gesture.state == UIGestureRecognizerStateBegan) {
         self.lastScale = gesture.scale;
     }
-
     [UIView animateWithDuration:0.3f
                           delay:0.0f
                         options:UIViewAnimationOptionCurveLinear
                      animations:^{
-                         
-//                         CGFloat currentScale = [[gesture.view.layer valueForKeyPath:@"transform.scale"] floatValue];
-//                         
-//                         // Constants to adjust the max/min values of zoom
-//                         const CGFloat kMaxScale = 2.0;
-//                         const CGFloat kMinScale = 1.0;
-                         
                          CGFloat newScale = 1 - (self.lastScale - gesture.scale);
-//                         newScale = MIN(newScale, kMaxScale / currentScale);
-//                         newScale = MAX(newScale, kMinScale / currentScale);
-//                         CGAffineTransform transform = CGAffineTransformScale([[gestureRecognizer view] transform], newScale, newScale);
-                         NSLog(@"newScale  - %f", newScale);
                          CGAffineTransform scale = CGAffineTransformScale(self.imageView.transform, newScale, newScale);
                          self.lastScale = gesture.scale;
                          self.imageView.transform = scale;
                      }
                      completion:^(BOOL finished) {
-                         
                      }];
 }
 
-//
-//- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
-//
-//    CGPoint touchPoint = [touch locationInView:self.view];
-//    [UIView animateWithDuration:2.0f animations:^{
-//        self.imageView.center = touchPoint;
-//    }];
-//    return YES;
-//}
+- (void)handleRotation:(UIRotationGestureRecognizer *)gesture {
+    if (gesture.state == UIGestureRecognizerStateBegan) {
+        self.imageViewRotation = gesture.rotation;
+    }
+    [UIView animateWithDuration:0.3f
+                          delay:0.0f
+                        options:UIViewAnimationOptionCurveLinear
+                     animations:^{
+                         CGFloat newRotation = gesture.rotation - self.imageViewRotation;
+                         NSLog(@"newRotation %f", newRotation);
+                         CGAffineTransform rotation = CGAffineTransformRotate(self.imageView.transform, newRotation);
+                         self.imageViewRotation = gesture.rotation;
+                         self.imageView.transform = rotation;
+                     }
+                     completion:^(BOOL finished) {
+                     }];
+}
 
-//- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRequireFailureOfGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer NS_AVAILABLE_IOS(7_0) {
-//    NSLog(@"[otherGestureRecognizer isKindOfClass:[UISwipeGestureRecognizer class]] -- %d",[gestureRecognizer isKindOfClass:[UITapGestureRecognizer class]]&& [otherGestureRecognizer isKindOfClass:[UISwipeGestureRecognizer class]]);
-//    return [gestureRecognizer isKindOfClass:[UITapGestureRecognizer class]]&& [otherGestureRecognizer isKindOfClass:[UISwipeGestureRecognizer class]];
-//}
-
-
-
-//- (void)handleDoubleTap:(UIGestureRecognizer *)gesture {
-//    CGAffineTransform currentTransform = self.imageView.transform;
-//    CGAffineTransform scaleTransform = CGAffineTransformScale(currentTransform, 1.2f, 1.2f);
-//    [UIView animateWithDuration:0.3f animations:^{
-//        self.imageView.transform = scaleTransform;
-//    }];
-//}
-//
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
+    if ([gestureRecognizer isKindOfClass:[UIPinchGestureRecognizer class]] && [otherGestureRecognizer isKindOfClass:[UIRotationGestureRecognizer class]]) {
+        return YES;
+    }
+    return NO;
+}
 
 - (void)rotateSpinningView:(UIView *)spiningView withRotationDirection:(VARotationDirection)rotationDirection {
-    CGFloat angle = (rotationDirection == VARotationDirectionClockwise) ? M_1_PI : -M_1_PI;
+    CGFloat angle = (rotationDirection == VARotationDirectionClockwise) ? M_PI_2 : -M_PI_2;
     [UIView animateWithDuration:0.3f
                           delay:0
                         options:UIViewAnimationOptionCurveLinear|UIViewAnimationOptionBeginFromCurrentState
@@ -208,23 +188,6 @@ typedef NS_ENUM(NSInteger, VARotationDirection) {
                          }
                      }];
 }
-
-
-
-//- (void)rotateSpinningView:(UIView *)spiningView withRotationDirection:(VARotationDirection)rotationDirection {
-//    CGFloat angle = (rotationDirection == VARotationDirectionClockwise) ? M_PI_2 : -M_PI_2;
-//    [UIView animateWithDuration:1.0f
-//                          delay:0
-//                        options:UIViewAnimationOptionCurveLinear
-//                     animations:^{
-//                         [spiningView setTransform:CGAffineTransformRotate(spiningView.transform, angle)];
-//                     }
-//                     completion:^(BOOL finished) {
-//                         if (finished && !CGAffineTransformEqualToTransform(spiningView.transform, CGAffineTransformIdentity)) {
-//                             [self rotateSpinningView:spiningView withRotationDirection:rotationDirection];
-//                         }
-//                     }];
-//}
 
 - (UIColor *)randomColor {
     CGFloat r = arc4random() % 256 / 255.0f;
