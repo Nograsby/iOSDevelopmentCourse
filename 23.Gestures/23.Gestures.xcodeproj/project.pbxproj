@@ -1,0 +1,384 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		F8EAA0C71DF92C4800461A8D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F8EAA0C61DF92C4800461A8D /* main.m */; };
+		F8EAA0CA1DF92C4800461A8D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F8EAA0C91DF92C4800461A8D /* AppDelegate.m */; };
+		F8EAA0CD1DF92C4800461A8D /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F8EAA0CC1DF92C4800461A8D /* ViewController.m */; };
+		F8EAA0D01DF92C4800461A8D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F8EAA0CE1DF92C4800461A8D /* Main.storyboard */; };
+		F8EAA0D21DF92C4800461A8D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F8EAA0D11DF92C4800461A8D /* Assets.xcassets */; };
+		F8EAA0D51DF92C4800461A8D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F8EAA0D31DF92C4800461A8D /* LaunchScreen.storyboard */; };
+		F8EAA10C1DF9317700461A8D /* planetary-gear-1.png in Resources */ = {isa = PBXBuildFile; fileRef = F8EAA0FD1DF9317700461A8D /* planetary-gear-1.png */; };
+		F8EAA10D1DF9317700461A8D /* planetary-gear-2.png in Resources */ = {isa = PBXBuildFile; fileRef = F8EAA0FE1DF9317700461A8D /* planetary-gear-2.png */; };
+		F8EAA10E1DF9317700461A8D /* planetary-gear-3.png in Resources */ = {isa = PBXBuildFile; fileRef = F8EAA0FF1DF9317700461A8D /* planetary-gear-3.png */; };
+		F8EAA10F1DF9317700461A8D /* planetary-gear-4.png in Resources */ = {isa = PBXBuildFile; fileRef = F8EAA1001DF9317700461A8D /* planetary-gear-4.png */; };
+		F8EAA1101DF9317700461A8D /* planetary-gear-5.png in Resources */ = {isa = PBXBuildFile; fileRef = F8EAA1011DF9317700461A8D /* planetary-gear-5.png */; };
+		F8EAA1111DF9317700461A8D /* planetary-gear-6.png in Resources */ = {isa = PBXBuildFile; fileRef = F8EAA1021DF9317700461A8D /* planetary-gear-6.png */; };
+		F8EAA1121DF9317700461A8D /* planetary-gear-7.png in Resources */ = {isa = PBXBuildFile; fileRef = F8EAA1031DF9317700461A8D /* planetary-gear-7.png */; };
+		F8EAA1131DF9317700461A8D /* planetary-gear-8.png in Resources */ = {isa = PBXBuildFile; fileRef = F8EAA1041DF9317700461A8D /* planetary-gear-8.png */; };
+		F8EAA1141DF9317700461A8D /* planetary-gear-9.png in Resources */ = {isa = PBXBuildFile; fileRef = F8EAA1051DF9317700461A8D /* planetary-gear-9.png */; };
+		F8EAA1151DF9317700461A8D /* planetary-gear-10.png in Resources */ = {isa = PBXBuildFile; fileRef = F8EAA1061DF9317700461A8D /* planetary-gear-10.png */; };
+		F8EAA1161DF9317700461A8D /* planetary-gear-11.png in Resources */ = {isa = PBXBuildFile; fileRef = F8EAA1071DF9317700461A8D /* planetary-gear-11.png */; };
+		F8EAA1171DF9317700461A8D /* planetary-gear-12.png in Resources */ = {isa = PBXBuildFile; fileRef = F8EAA1081DF9317700461A8D /* planetary-gear-12.png */; };
+		F8EAA1181DF9317700461A8D /* planetary-gear-13.png in Resources */ = {isa = PBXBuildFile; fileRef = F8EAA1091DF9317700461A8D /* planetary-gear-13.png */; };
+		F8EAA1191DF9317700461A8D /* planetary-gear-14.png in Resources */ = {isa = PBXBuildFile; fileRef = F8EAA10A1DF9317700461A8D /* planetary-gear-14.png */; };
+		F8EAA11A1DF9317700461A8D /* planetary-gear-15.png in Resources */ = {isa = PBXBuildFile; fileRef = F8EAA10B1DF9317700461A8D /* planetary-gear-15.png */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		F8EAA0C21DF92C4800461A8D /* 23.Gestures.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = 23.Gestures.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F8EAA0C61DF92C4800461A8D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		F8EAA0C81DF92C4800461A8D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		F8EAA0C91DF92C4800461A8D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		F8EAA0CB1DF92C4800461A8D /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		F8EAA0CC1DF92C4800461A8D /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		F8EAA0CF1DF92C4800461A8D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		F8EAA0D11DF92C4800461A8D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F8EAA0D41DF92C4800461A8D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		F8EAA0D61DF92C4800461A8D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F8EAA0FD1DF9317700461A8D /* planetary-gear-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "planetary-gear-1.png"; sourceTree = "<group>"; };
+		F8EAA0FE1DF9317700461A8D /* planetary-gear-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "planetary-gear-2.png"; sourceTree = "<group>"; };
+		F8EAA0FF1DF9317700461A8D /* planetary-gear-3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "planetary-gear-3.png"; sourceTree = "<group>"; };
+		F8EAA1001DF9317700461A8D /* planetary-gear-4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "planetary-gear-4.png"; sourceTree = "<group>"; };
+		F8EAA1011DF9317700461A8D /* planetary-gear-5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "planetary-gear-5.png"; sourceTree = "<group>"; };
+		F8EAA1021DF9317700461A8D /* planetary-gear-6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "planetary-gear-6.png"; sourceTree = "<group>"; };
+		F8EAA1031DF9317700461A8D /* planetary-gear-7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "planetary-gear-7.png"; sourceTree = "<group>"; };
+		F8EAA1041DF9317700461A8D /* planetary-gear-8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "planetary-gear-8.png"; sourceTree = "<group>"; };
+		F8EAA1051DF9317700461A8D /* planetary-gear-9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "planetary-gear-9.png"; sourceTree = "<group>"; };
+		F8EAA1061DF9317700461A8D /* planetary-gear-10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "planetary-gear-10.png"; sourceTree = "<group>"; };
+		F8EAA1071DF9317700461A8D /* planetary-gear-11.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "planetary-gear-11.png"; sourceTree = "<group>"; };
+		F8EAA1081DF9317700461A8D /* planetary-gear-12.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "planetary-gear-12.png"; sourceTree = "<group>"; };
+		F8EAA1091DF9317700461A8D /* planetary-gear-13.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "planetary-gear-13.png"; sourceTree = "<group>"; };
+		F8EAA10A1DF9317700461A8D /* planetary-gear-14.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "planetary-gear-14.png"; sourceTree = "<group>"; };
+		F8EAA10B1DF9317700461A8D /* planetary-gear-15.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "planetary-gear-15.png"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F8EAA0BF1DF92C4800461A8D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		F8EAA0B91DF92C4800461A8D = {
+			isa = PBXGroup;
+			children = (
+				F8EAA0C41DF92C4800461A8D /* 23.Gestures */,
+				F8EAA0C31DF92C4800461A8D /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		F8EAA0C31DF92C4800461A8D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F8EAA0C21DF92C4800461A8D /* 23.Gestures.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F8EAA0C41DF92C4800461A8D /* 23.Gestures */ = {
+			isa = PBXGroup;
+			children = (
+				F8EAA0C81DF92C4800461A8D /* AppDelegate.h */,
+				F8EAA0C91DF92C4800461A8D /* AppDelegate.m */,
+				F8EAA0CB1DF92C4800461A8D /* ViewController.h */,
+				F8EAA0CC1DF92C4800461A8D /* ViewController.m */,
+				F8EAA0DC1DF9315600461A8D /* Images */,
+				F8EAA0CE1DF92C4800461A8D /* Main.storyboard */,
+				F8EAA0D11DF92C4800461A8D /* Assets.xcassets */,
+				F8EAA0D31DF92C4800461A8D /* LaunchScreen.storyboard */,
+				F8EAA0D61DF92C4800461A8D /* Info.plist */,
+				F8EAA0C51DF92C4800461A8D /* Supporting Files */,
+			);
+			path = 23.Gestures;
+			sourceTree = "<group>";
+		};
+		F8EAA0C51DF92C4800461A8D /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				F8EAA0C61DF92C4800461A8D /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		F8EAA0DC1DF9315600461A8D /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				F8EAA0FD1DF9317700461A8D /* planetary-gear-1.png */,
+				F8EAA0FE1DF9317700461A8D /* planetary-gear-2.png */,
+				F8EAA0FF1DF9317700461A8D /* planetary-gear-3.png */,
+				F8EAA1001DF9317700461A8D /* planetary-gear-4.png */,
+				F8EAA1011DF9317700461A8D /* planetary-gear-5.png */,
+				F8EAA1021DF9317700461A8D /* planetary-gear-6.png */,
+				F8EAA1031DF9317700461A8D /* planetary-gear-7.png */,
+				F8EAA1041DF9317700461A8D /* planetary-gear-8.png */,
+				F8EAA1051DF9317700461A8D /* planetary-gear-9.png */,
+				F8EAA1061DF9317700461A8D /* planetary-gear-10.png */,
+				F8EAA1071DF9317700461A8D /* planetary-gear-11.png */,
+				F8EAA1081DF9317700461A8D /* planetary-gear-12.png */,
+				F8EAA1091DF9317700461A8D /* planetary-gear-13.png */,
+				F8EAA10A1DF9317700461A8D /* planetary-gear-14.png */,
+				F8EAA10B1DF9317700461A8D /* planetary-gear-15.png */,
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		F8EAA0C11DF92C4800461A8D /* 23.Gestures */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F8EAA0D91DF92C4800461A8D /* Build configuration list for PBXNativeTarget "23.Gestures" */;
+			buildPhases = (
+				F8EAA0BE1DF92C4800461A8D /* Sources */,
+				F8EAA0BF1DF92C4800461A8D /* Frameworks */,
+				F8EAA0C01DF92C4800461A8D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = 23.Gestures;
+			productName = 23.Gestures;
+			productReference = F8EAA0C21DF92C4800461A8D /* 23.Gestures.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F8EAA0BA1DF92C4800461A8D /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0810;
+				ORGANIZATIONNAME = "Vladimir Ananko";
+				TargetAttributes = {
+					F8EAA0C11DF92C4800461A8D = {
+						CreatedOnToolsVersion = 8.1;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = F8EAA0BD1DF92C4800461A8D /* Build configuration list for PBXProject "23.Gestures" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = F8EAA0B91DF92C4800461A8D;
+			productRefGroup = F8EAA0C31DF92C4800461A8D /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F8EAA0C11DF92C4800461A8D /* 23.Gestures */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		F8EAA0C01DF92C4800461A8D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F8EAA0D51DF92C4800461A8D /* LaunchScreen.storyboard in Resources */,
+				F8EAA1161DF9317700461A8D /* planetary-gear-11.png in Resources */,
+				F8EAA1191DF9317700461A8D /* planetary-gear-14.png in Resources */,
+				F8EAA1141DF9317700461A8D /* planetary-gear-9.png in Resources */,
+				F8EAA1111DF9317700461A8D /* planetary-gear-6.png in Resources */,
+				F8EAA10E1DF9317700461A8D /* planetary-gear-3.png in Resources */,
+				F8EAA1181DF9317700461A8D /* planetary-gear-13.png in Resources */,
+				F8EAA11A1DF9317700461A8D /* planetary-gear-15.png in Resources */,
+				F8EAA1151DF9317700461A8D /* planetary-gear-10.png in Resources */,
+				F8EAA10C1DF9317700461A8D /* planetary-gear-1.png in Resources */,
+				F8EAA10F1DF9317700461A8D /* planetary-gear-4.png in Resources */,
+				F8EAA10D1DF9317700461A8D /* planetary-gear-2.png in Resources */,
+				F8EAA1101DF9317700461A8D /* planetary-gear-5.png in Resources */,
+				F8EAA1171DF9317700461A8D /* planetary-gear-12.png in Resources */,
+				F8EAA1121DF9317700461A8D /* planetary-gear-7.png in Resources */,
+				F8EAA0D21DF92C4800461A8D /* Assets.xcassets in Resources */,
+				F8EAA1131DF9317700461A8D /* planetary-gear-8.png in Resources */,
+				F8EAA0D01DF92C4800461A8D /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F8EAA0BE1DF92C4800461A8D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F8EAA0CD1DF92C4800461A8D /* ViewController.m in Sources */,
+				F8EAA0CA1DF92C4800461A8D /* AppDelegate.m in Sources */,
+				F8EAA0C71DF92C4800461A8D /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		F8EAA0CE1DF92C4800461A8D /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F8EAA0CF1DF92C4800461A8D /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		F8EAA0D31DF92C4800461A8D /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F8EAA0D41DF92C4800461A8D /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		F8EAA0D71DF92C4800461A8D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		F8EAA0D81DF92C4800461A8D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		F8EAA0DA1DF92C4800461A8D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = 23.Gestures/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.Nograsby.-3-Gestures";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		F8EAA0DB1DF92C4800461A8D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = 23.Gestures/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.Nograsby.-3-Gestures";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F8EAA0BD1DF92C4800461A8D /* Build configuration list for PBXProject "23.Gestures" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F8EAA0D71DF92C4800461A8D /* Debug */,
+				F8EAA0D81DF92C4800461A8D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F8EAA0D91DF92C4800461A8D /* Build configuration list for PBXNativeTarget "23.Gestures" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F8EAA0DA1DF92C4800461A8D /* Debug */,
+				F8EAA0DB1DF92C4800461A8D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = F8EAA0BA1DF92C4800461A8D /* Project object */;
+}
