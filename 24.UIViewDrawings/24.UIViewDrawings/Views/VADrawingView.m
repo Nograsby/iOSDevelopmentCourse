@@ -29,33 +29,81 @@
 
 #import "VADrawingView.h"
 
+static CGFloat const VACircleRadius = 5.0f;
+
+@interface VADrawingView ()
+
+@property (assign, nonatomic) CGPoint lastTouchPoint;
+
+@end
+
 @implementation VADrawingView
 
 - (void)drawRect:(CGRect)rect {
     [super drawRect:rect];
     
 // Beginner
-    [self drawStarWithCenter:CGPointMake(100.0f, 100.0f) andSize:100.0f];
+//    [self drawStarWithRect:CGRectMake(100.0f, 100.0f, 100.0f, 100.0f)];
 
 // Student
     NSMutableArray *rectsArray = [NSMutableArray array];
     for (NSInteger i = 0; i < 5; i++) {
-        CGFloat starSize = arc4random() % 30 + 20;
-        CGFloat xCenter = arc4random() % (NSInteger)(CGRectGetWidth(rect) - starSize) + starSize / 2;
-        CGFloat yCenter = arc4random() % (NSInteger)(CGRectGetHeight(rect) - starSize) + starSize / 2;
-        CGRect starRect = CGRectMake(xCenter - starSize / 2, yCenter - starSize / 2, starSize, starSize);
-        
+        BOOL isIncorrectRect = YES;
+        CGRect starRect = CGRectZero;
+        while (isIncorrectRect) {
+            isIncorrectRect = NO;
+            starRect = [self generateStarRectInRect:rect];
+            for (NSString *rectString in rectsArray) {
+                CGRect rectFromString = CGRectFromString(rectString);
+                if (CGRectIntersectsRect(rectFromString, starRect)) {
+                    isIncorrectRect = YES;
+                }
+            }
+        }
+        [self drawStarWithRect:starRect];
+        [rectsArray addObject:NSStringFromCGRect(starRect)];
     }
+    
+    UIPanGestureRecognizer *panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePanGesture:)];
+    [self addGestureRecognizer:panGesture];
 
 }
 
-- (void)drawStarWithCenter:(CGPoint)center andSize:(CGFloat)size {
+- (void)handlePanGesture:(UIPanGestureRecognizer *)gesture {
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGPoint touch = [gesture locationInView:self];
+
+    if (gesture.state == UIGestureRecognizerStateBegan) {
+        self.lastTouchPoint = touch;
+        CGContextMoveToPoint(context, touch.x, touch.y);
+    } else {
+        NSLog(@"%@", NSStringFromCGPoint(touch));
+        CGContextAddLineToPoint(context, touch.x, touch.y);
+        
+        CGContextSetStrokeColorWithColor(context, [UIColor redColor].CGColor);
+        CGContextStrokePath(context);
+        [self setNeedsDisplay];
+
+    }
+}
+
+
+
+- (CGRect)generateStarRectInRect:(CGRect)rect {
+    CGFloat starSize = arc4random() % 30 + 50;
+    CGFloat xCenter = arc4random() % (NSInteger)(CGRectGetWidth(rect) - starSize - VACircleRadius) + (starSize + VACircleRadius) / 2;
+    CGFloat yCenter = arc4random() % (NSInteger)(CGRectGetHeight(rect) - starSize - VACircleRadius) + (starSize + VACircleRadius)/ 2;
+    CGRect starRect = CGRectMake(xCenter - starSize / 2, yCenter - starSize / 2, starSize, starSize);
+    return starRect;
+}
+
+- (void)drawStarWithRect:(CGRect)rect {
     // Star
     CGContextRef context = UIGraphicsGetCurrentContext();
-    CGFloat xCenter = center.x;
-    CGFloat yCenter = center.y;
+    CGFloat xCenter = CGRectGetMidX(rect);
+    CGFloat yCenter = CGRectGetMidY(rect);
     
-    double starRadius = size / 2.0f;
+    double starRadius = CGRectGetWidth(rect) / 2.0f;
     CGFloat flip = -1.0;
     
     CGContextSetFillColorWithColor(context, [UIColor blueColor].CGColor);
@@ -73,16 +121,15 @@
     CGContextFillPath(context);
     
     // Circles
-    CGFloat circleRadius = 10.0f;
     CGContextSetFillColorWithColor(context, [UIColor yellowColor].CGColor);
     CGContextMoveToPoint(context, xCenter, starRadius * flip + yCenter);
-    CGContextAddArc(context, xCenter, starRadius * flip + yCenter, circleRadius, 0, 2 * M_PI, 0);
+    CGContextAddArc(context, xCenter, starRadius * flip + yCenter, VACircleRadius, 0, 2 * M_PI, 0);
     
     for (NSUInteger i = 1; i < 5; i++) {
         float x = starRadius * sin(i * theta);
         float y = starRadius * cos(i * theta);
         CGContextMoveToPoint(context, x + xCenter, y * flip + yCenter);
-        CGContextAddArc(context, x + xCenter, y * flip + yCenter, circleRadius, 0, 2 * M_PI, 0);
+        CGContextAddArc(context, x + xCenter, y * flip + yCenter, VACircleRadius, 0, 2 * M_PI, 0);
     }
     
     CGContextClosePath(context);
@@ -90,11 +137,11 @@
     
     // Lines
     CGContextSetStrokeColorWithColor(context, [UIColor blackColor].CGColor);
-    CGContextMoveToPoint(context, xCenter, (starRadius + circleRadius) * flip + yCenter);
+    CGContextMoveToPoint(context, xCenter, (starRadius + VACircleRadius) * flip + yCenter);
     
     for (NSUInteger i = 1; i < 5; i++) {
-        float x = (starRadius + circleRadius) * sin(i * theta / 2);
-        float y = (starRadius + circleRadius) * cos(i * theta / 2);
+        float x = (starRadius + VACircleRadius) * sin(i * theta / 2);
+        float y = (starRadius + VACircleRadius) * cos(i * theta / 2);
         CGContextAddLineToPoint(context, x + xCenter, y * flip + yCenter);
     }
     
