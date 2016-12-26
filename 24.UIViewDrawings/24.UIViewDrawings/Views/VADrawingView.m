@@ -34,10 +34,19 @@ static CGFloat const VACircleRadius = 5.0f;
 @interface VADrawingView ()
 
 @property (assign, nonatomic) CGPoint lastTouchPoint;
+@property (strong, nonatomic) NSMutableArray *pointsArray;
 
 @end
 
 @implementation VADrawingView
+
+- (instancetype)initWithCoder:(NSCoder *)coder {
+    self = [super initWithCoder:coder];
+    if (self) {
+        self.pointsArray = [[NSMutableArray alloc] init];
+    }
+    return self;
+}
 
 - (void)drawRect:(CGRect)rect {
     [super drawRect:rect];
@@ -46,7 +55,7 @@ static CGFloat const VACircleRadius = 5.0f;
 //    [self drawStarWithRect:CGRectMake(100.0f, 100.0f, 100.0f, 100.0f)];
 
 // Student
-    NSMutableArray *rectsArray = [NSMutableArray array];
+/*    NSMutableArray *rectsArray = [NSMutableArray array];
     for (NSInteger i = 0; i < 5; i++) {
         BOOL isIncorrectRect = YES;
         CGRect starRect = CGRectZero;
@@ -62,32 +71,37 @@ static CGFloat const VACircleRadius = 5.0f;
         }
         [self drawStarWithRect:starRect];
         [rectsArray addObject:NSStringFromCGRect(starRect)];
-    }
+    } */
     
+// Supermen (fast realization. Not beautiful)
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    
+    for (NSString *pointString in self.pointsArray) {
+        CGPoint touchPoint = CGPointFromString(pointString);
+        CGContextMoveToPoint(context, self.lastTouchPoint.x, self.lastTouchPoint.y);
+        CGContextAddLineToPoint(context, touchPoint.x, touchPoint.y);
+        CGContextSetStrokeColorWithColor(context, [UIColor blackColor].CGColor);
+        CGContextSetLineWidth(context, 1.5f);
+        CGContextStrokePath(context);
+        
+        self.lastTouchPoint = touchPoint;
+    }
+
     UIPanGestureRecognizer *panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePanGesture:)];
     [self addGestureRecognizer:panGesture];
+}
 
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    UITouch *touch = [[event allTouches] anyObject];
+    CGPoint touchPoint = [touch locationInView:self];
+    self.lastTouchPoint = touchPoint;
 }
 
 - (void)handlePanGesture:(UIPanGestureRecognizer *)gesture {
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    CGPoint touch = [gesture locationInView:self];
-
-    if (gesture.state == UIGestureRecognizerStateBegan) {
-        self.lastTouchPoint = touch;
-        CGContextMoveToPoint(context, touch.x, touch.y);
-    } else {
-        NSLog(@"%@", NSStringFromCGPoint(touch));
-        CGContextAddLineToPoint(context, touch.x, touch.y);
-        
-        CGContextSetStrokeColorWithColor(context, [UIColor redColor].CGColor);
-        CGContextStrokePath(context);
-        [self setNeedsDisplay];
-
-    }
+    CGPoint touchPoint = [gesture locationInView:self];
+    [self.pointsArray addObject:NSStringFromCGPoint(touchPoint)];
+    [self setNeedsDisplay];
 }
-
-
 
 - (CGRect)generateStarRectInRect:(CGRect)rect {
     CGFloat starSize = arc4random() % 30 + 50;
@@ -147,9 +161,6 @@ static CGFloat const VACircleRadius = 5.0f;
     
     CGContextClosePath(context);
     CGContextStrokePath(context);
-
 }
-
-
 
 @end
